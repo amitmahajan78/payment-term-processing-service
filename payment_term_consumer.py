@@ -5,16 +5,23 @@ import constants as c
 
 
 class PaymentTermConsumer:
-    def __init__(self):
 
-        self.consumer = KafkaConsumer(
-            bootstrap_servers=os.getenv('KAFKA_BOOTSTRAP_SERVER'),
-            group_id=c.CONSUMER_GROUP_ID,
-            api_version=(0, 10, 2))
+    def __init__(self):
+        self.consumer = KafkaConsumer(bootstrap_servers=[os.environ.get('BOOTSTRAP_SERVERS')],
+                                      sasl_mechanism=os.environ.get(
+                                          'SASL_MECHANISM'),
+                                      security_protocol=os.environ.get(
+                                          'SECURITY_PROTOCOL'),
+                                      sasl_plain_username=os.environ.get(
+                                          'SASL_USERNAME'),
+                                      sasl_plain_password=os.environ.get(
+                                          'SASL_PASSWORD'),
+                                      group_id='Payment_Term_Service',
+                                      auto_offset_reset='earliest',)
 
     def subscribe(self, onMessage):
-        self.consumer.subscribe([c.PAYMENT_TERM_CONSUMER_TOPIC])
-        print(f'Subscribed to "{c.PAYMENT_TERM_CONSUMER_TOPIC}"')
-
+        self.consumer.subscribe(["shipping_order_created"])
+        print("subscribe to shipping_order_created")
         for message in self.consumer:
+            print(message)
             onMessage(message)

@@ -21,10 +21,12 @@ class PaymentTermService:
         self.payment_term_producer = PaymentTermProducer()
 
     def start(self):
+        print('Payment Term Service subscribing start')
         self.payment_term_consumer.subscribe(self.onMessage)
+        print('Payment Term Service subscribing end')
 
     def stop(self, signalnum, handler):
-        print('Stopping Price service')
+        print('Stopping Payment Term Service')
         self.payment_term_consumer.close()
         self.payment_term_producer.close()
 
