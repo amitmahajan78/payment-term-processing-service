@@ -10,8 +10,8 @@ class PaymentTermConsumer:
         print("'" + os.environ.get('BOOTSTRAP_SERVERS') + "'")
         print("'" + os.environ.get('SASL_MECHANISM') + "'")
         print("'" + os.environ.get('SECURITY_PROTOCOL') + "'")
-        print("'" + os.environ.get('SASL_USERNAME') + "'")
-        print("'" + os.environ.get('SASL_PASSWORD') + "'")
+     #   print("'" + os.environ.get('SASL_USERNAME') + "'")
+     #   print("'" + os.environ.get('SASL_PASSWORD') + "'")
 
         self.consumer = KafkaConsumer(bootstrap_servers=[os.environ.get('BOOTSTRAP_SERVERS')],
                                       sasl_mechanism=os.environ.get(

@@ -8,5 +8,5 @@ def main():
 
 
 if __name__ == '__main__':
-    print("Starting v1.0")
+    print("Starting app version 1.0")
     main()
