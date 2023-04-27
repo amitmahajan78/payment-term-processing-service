@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Payment term Service Ext CI workflow
 
 on:
   push:
@@ -20,8 +20,8 @@ jobs:
 
     - name: Build and tag the Docker image
       run: |
-        docker build -t payment-term-service .
-        docker tag payment-term-service ${{ secrets.DOCKERHUB_USERNAME }}/payment-term-service:latest
+        docker build -t payment-term-service-ext .
+        docker tag payment-term-service-ext ${{ secrets.DOCKERHUB_USERNAME }}/payment-term-service-ext:latest
     
     - name: Push docker image to docker hub
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/payment-term-service:latest    
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/payment-term-service-ext:latest    
